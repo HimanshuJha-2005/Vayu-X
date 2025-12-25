@@ -121,7 +121,7 @@ and predictable behavior under constrained embedded conditions.
 
 ## Wiring & Integration Diagram
 
-![ESP32 Wiring Schematic](images/esp32_wiring_schematic.jpg)
+![ESP32 Wiring Schematic](esp32_schematic.jpg)
 
 This schematic illustrates the logical wiring and signal connections used in the Vayu-X prototype.
 
