@@ -31,6 +31,7 @@ The project emphasizes **embedded reliability, explainable behavior, and system 
 
 ## 🧩 System Architecture
 
+```mermaid
 flowchart LR
     PMS[PMS3003<br/>PM2.5 / PM10] --> ESP[ESP32]
     MQ[MQ-135<br/>Gas Sensor] --> ESP
@@ -42,6 +43,10 @@ flowchart LR
 
     DEC --> MOT[Motors]
     DEC --> FAN[HEPA Fan]
+
+    ESP --> OLED[OLED Display]
+    ESP --> WIFI[Wi-Fi AP<br/>GET /data]
+```
 
 ### Core Components
 - **ESP32 (38-pin)** — central controller
@@ -109,19 +114,19 @@ GET/data
 ## 🖼️ Demo & Prototype Media
 
 ### Robot Prototype
-![Robot Full View](demo/images/robot_full_view.jpg)
+![Robot Full View](demo/robot_full_view.jpg)
 
 ### Electronics & Wiring
-![Electronics View](demo/images/electronics_view.jpg)
+![Electronics View](demo/electronics_view.jpg)
 
 ### HEPA Filtration Unit
-![HEPA Filter](demo/images/hepa_filter_unit.jpg)
+![HEPA Filter](demo/HEPA_filter_unit.jpg)
 
 ### Ultrasonic Obstacle Sensor
-![Ultrasonic Sensor](demo/images/ultrasonic_front.jpg)
+![Ultrasonic Sensor](demo/ultrasonic_front.jpg)
 
 ### OLED Display
-![OLED Display](demo/images/oled_display.jpg)
+![OLED Display](demo/oled_display.jpg)
 
 > Note: Minor structural changes were made during iteration (sensor relocation near HEPA intake). Core logic and functionality remain unchanged.
 
