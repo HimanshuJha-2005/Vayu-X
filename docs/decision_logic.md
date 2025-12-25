@@ -35,7 +35,7 @@ can be modeled as the following logical states:
 | PURIFY | Stationary air purification mode |
 | IDLE | Transitional wait state for timing guards |
 
-## 2.2 State Transition Summary
+### 2.2 State Transition Summary
 
 - INIT → MOVE  
   After successful sensor initialization and warm-up
