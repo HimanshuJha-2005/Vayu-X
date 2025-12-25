@@ -117,3 +117,20 @@ The hardware architecture of Vayu-X is designed for:
 
 All components were selected to support deterministic control
 and predictable behavior under constrained embedded conditions.
+---
+
+## Wiring & Integration Diagram
+
+![ESP32 Wiring Schematic](images/esp32_wiring_schematic.jpg)
+
+This schematic illustrates the logical wiring and signal connections used in the Vayu-X prototype.
+
+It includes:
+- ESP32 (38-pin) pin assignments
+- Sensor interfaces (PMS3003, MQ-135, DHT22, HC-SR04)
+- Motor driver (TB6612FNG) connections
+- OLED display (I2C)
+- Fan and power rail distribution
+
+The diagram represents the functional wiring layout used during development and testing.
+Minor physical routing variations may exist in the prototype due to enclosure and mechanical constraints.
