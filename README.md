@@ -134,6 +134,7 @@ GET/data
 
 ## 🗂️ Repository Structure
 
+```markdown
 Vayu-X/
 ├─ firmware/ ESP32 firmware (Arduino)
 ├─ app/android/ Android monitoring app (Kotlin)
@@ -141,7 +142,7 @@ Vayu-X/
 ├─ hardware/ Schematics & hardware references
 ├─ demo/ Prototype images & demo media
 └─ README.md Project overview
-
+```
 
 ---
 
