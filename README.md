@@ -1,16 +1,22 @@
 # Vayu-X
 
-Vayu-X is an ESP32-based autonomous mobile robot designed to monitor indoor air quality and actively improve it using real-time decision logic.
+Vayu-X is an ESP32-based autonomous mobile robot designed to monitor indoor air quality and actively improve it using deterministic, real-time decision logic.
+
+The system combines mobility, environmental sensing, and closed-loop actuation to detect air pollution and respond autonomously without relying on cloud services or machine learning models.
 
 ---
 
 ## Overview
 
-Indoor air pollution often goes unnoticed until it begins affecting health. Most available solutions are either passive monitors or stationary air purifiers.
+Indoor air pollution often goes unnoticed until it begins affecting health.  
+Most existing solutions are either passive monitors or stationary air purifiers.
 
-Vayu-X addresses this gap by combining **mobility**, **environment sensing**, and **closed-loop actuation** into a single autonomous system.
+Vayu-X addresses this gap by:
+- autonomously navigating indoor spaces
+- continuously sampling air quality
+- activating an onboard filtration system when pollution exceeds safe limits
 
-The robot continuously navigates an indoor environment, detects air quality degradation, and activates an onboard filtration system when pollution exceeds safe limits.
+The robot operates fully independently and does not require external connectivity.
 
 ---
 
@@ -18,78 +24,81 @@ The robot continuously navigates an indoor environment, detects air quality degr
 
 - Autonomous indoor navigation with obstacle avoidance  
 - Real-time air quality monitoring (PM, gas concentration, temperature, humidity)  
-- AQI computation based on US EPA standards  
-- Closed-loop air purification (detect → act → verify)  
-- Deterministic embedded control logic for reliability  
+- AQI computation based on **US EPA standards**  
+- Closed-loop purification (detect → act → verify)  
+- Deterministic, explainable embedded control logic  
+- Optional local monitoring via Wi-Fi (read-only)
 
 ---
 
-## Hardware Architecture
+## System Architecture & Design
 
-**Core Controller**
-- ESP32
+Detailed documentation for each subsystem is provided below:
 
-**Sensors**
-- PMS3003 – particulate matter (PM2.5, PM10)
-- MQ-135 – gas concentration
-- DHT22 – temperature and humidity
-- Ultrasonic sensor – obstacle detection
+- 📐 **System Architecture**  
+  [`docs/system_architecture.md`](docs/system_architecture.md)
 
-**Actuation**
-- DC motors with motor driver
-- Fan with HEPA filtration unit
+- 🧠 **Decision Logic & Autonomous Behavior**  
+  [`docs/decision_logic.md`](docs/decision_logic.md)
 
-**Power**
-- Battery-powered embedded system with onboard regulation
+- ⚙️ **Hardware Architecture & Power Design**  
+  [`hardware/hardware_overview.md`](hardware/hardware_overview.md)
 
----
+- 📱 **Android Monitoring App (Optional, Read-Only)**  
+  [`app/android/README.md`](app/android/README.md)
 
-## Software Design
-
-The system follows a deterministic, state-based control approach suitable for real-time embedded environments.
-
-Key design decisions:
-- Threshold-based AQI logic instead of ML models
-- Non-blocking sensor polling
-- Predictable behavior under constrained resources
-
-This ensures explainability, reliability, and consistent performance during autonomous operation.
+- 🎥 **Demo Media & Prototype Images**  
+  [`demo/README.md`](demo/README.md)
 
 ---
 
-## Autonomous Behavior
+## Software Design Philosophy
 
-- Continuous environmental sampling while navigating
-- AQI-based decision making
-- Automatic activation of filtration system when air quality degrades
-- Reduced movement and focused sampling in high-pollution zones
+Vayu-X intentionally avoids AI/ML-based decision-making.
+
+Instead, it uses:
+- threshold-based AQI logic
+- state-driven autonomous behavior
+- timing guards and non-blocking execution
+
+This approach was chosen to ensure:
+- predictable behavior
+- explainable decisions
+- reliability on constrained embedded hardware
 
 ---
 
 ## Current Status
 
-- Fully functional autonomous prototype
-- Tested and demonstrated in an offline competition environment
+- Fully functional autonomous prototype  
+- Demonstrated in an offline evaluation environment  
+- All core subsystems operational and integrated  
 
 ---
 
 ## Limitations
 
-- Indoor-only operation
-- Fixed AQI thresholds
-- No cloud or long-term data storage
+- Indoor-only operation  
+- Fixed AQI thresholds  
+- No long-term data storage or cloud integration  
 
 ---
 
 ## Future Improvements
 
-- Adaptive AQI thresholds
-- Enhanced localization
-- Mobile application for live monitoring
-- Long-term data logging and analytics
+- Adaptive AQI thresholds  
+- Improved localization and navigation  
+- Enhanced data logging for long-term analysis  
+- Refined mechanical enclosure  
 
 ---
 
-## Competition Context
+## Development Context
 
-This project was developed and demonstrated by **Team Vayu-X Innovators** as part of a national-level technical competition.
+This project was developed by **Team Vayu-X Innovators** as part of a national-level technical competition and evaluated through live, offline demonstrations.
+
+---
+
+## License
+
+This project is intended for academic and educational use.
