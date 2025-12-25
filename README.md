@@ -93,8 +93,7 @@ Vayu-X exposes a **read-only HTTP JSON endpoint** for monitoring.
 - Android app fetches live data via HTTP
 
 ### Endpoint
-GET/data
-
+GET /data
 
 ### Data Provided
 - AQI (numerical)
@@ -128,13 +127,16 @@ GET/data
 ### OLED Display
 ![OLED Display](demo/oled_display.jpg)
 
+### Demo Video: A 4-minute demonstration video showing autonomous navigation, air quality sensing, and purification behavior.
+▶️ Watch the demo: https://drive.google.com/file/d/1eLcLztVSTi2jR6vkM98CXFnCEnDL0e1T/view?usp=drive_link
+
 > Note: Minor structural changes were made during iteration (sensor relocation near HEPA intake). Core logic and functionality remain unchanged.
 
 ---
 
 ## 🗂️ Repository Structure
 
-```markdown
+```md
 Vayu-X/
 ├─ firmware/ ESP32 firmware (Arduino)
 ├─ app/android/ Android monitoring app (Kotlin)
@@ -195,6 +197,3 @@ LinkedIn: https://www.linkedin.com/in/himanshu-jha-728834337
 Vayu-X demonstrates how **clear decision logic, embedded constraints, and physical actuation** can be combined to solve real-world problems — without unnecessary complexity.
 
 Built to be **understood, demonstrated, and trusted**.
-
-    ESP --> OLED[OLED Display]
-    ESP --> WIFI[Wi-Fi AP<br/>JSON /data]
