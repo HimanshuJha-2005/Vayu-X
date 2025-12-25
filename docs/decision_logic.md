@@ -35,6 +35,26 @@ can be modeled as the following logical states:
 | PURIFY | Stationary air purification mode |
 | IDLE | Transitional wait state for timing guards |
 
+## 2.2 State Transition Summary
+
+- INIT → MOVE  
+  After successful sensor initialization and warm-up
+
+- MOVE → AVOID_OBSTACLE  
+  Triggered when ultrasonic distance falls below safety threshold
+
+- AVOID_OBSTACLE → MOVE  
+  After turn maneuver and obstacle clearance
+
+- MOVE → PURIFY  
+  Triggered when AQI ≥ configured stop threshold
+
+- PURIFY → MOVE  
+  Triggered when AQI falls below threshold for a sustained duration
+
+- Any State → IDLE  
+  Used internally for timing guards and stabilization
+
 ---
 
 ## 3. Sensor Inputs Driving Decisions
