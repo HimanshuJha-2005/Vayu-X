@@ -1,104 +1,194 @@
-# Vayu-X
+# Vayu-X — Smart Autonomous Air-Quality Robot
 
-Vayu-X is an ESP32-based autonomous mobile robot designed to monitor indoor air quality and actively improve it using deterministic, real-time decision logic.
+Vayu-X is an **ESP32-based autonomous mobile robot** designed to **monitor indoor air quality and actively purify polluted zones** using deterministic, rule-based control.
 
-The system combines mobility, environmental sensing, and closed-loop actuation to detect air pollution and respond autonomously without relying on cloud services or machine learning models.
+The system navigates an environment, evaluates air quality using particulate and gas sensors, and **automatically halts movement to perform purification** when unhealthy conditions are detected.
 
----
-
-## Overview
-
-Indoor air pollution often goes unnoticed until it begins affecting health.  
-Most existing solutions are either passive monitors or stationary air purifiers.
-
-Vayu-X addresses this gap by:
-- autonomously navigating indoor spaces
-- continuously sampling air quality
-- activating an onboard filtration system when pollution exceeds safe limits
-
-The robot operates fully independently and does not require external connectivity.
+> ⚙️ Built as a real embedded system — explainable, predictable, and demo-ready.
 
 ---
 
-## System Highlights
+## 🚀 Project Highlights
 
-- Autonomous indoor navigation with obstacle avoidance  
-- Real-time air quality monitoring (PM, gas concentration, temperature, humidity)  
-- AQI computation based on **US EPA standards**  
-- Closed-loop purification (detect → act → verify)  
-- Deterministic, explainable embedded control logic  
-- Optional local monitoring via Wi-Fi (read-only)
-
----
-
-## System Architecture & Design
-
-Detailed documentation for each subsystem is provided below:
-
-- 📐 **System Architecture**  
-  [`docs/system_architecture.md`](docs/system_architecture.md)
-
-- 🧠 **Decision Logic & Autonomous Behavior**  
-  [`docs/decision_logic.md`](docs/decision_logic.md)
-
-- ⚙️ **Hardware Architecture & Power Design**  
-  [`hardware/hardware_overview.md`](hardware/hardware_overview.md)
-
-- 📱 **Android Monitoring App (Optional, Read-Only)**  
-  [`app/android/README.md`](app/android/README.md)
-
-- 🎥 **Demo Media & Prototype Images**  
-  [`demo/README.md`](demo/README.md)
+- Fully autonomous operation (no remote control required)
+- Real-time AQI computation using **US EPA standards**
+- Active air purification using **HEPA filtration**
+- Obstacle avoidance via ultrasonic sensing
+- Deterministic rule-based decision logic (no ML / AI)
+- Optional **read-only Android monitoring app**
+- ESP32 Wi-Fi AP + HTTP JSON interface
 
 ---
 
-## Software Design Philosophy
+## 🧠 Motivation
 
-Vayu-X intentionally avoids AI/ML-based decision-making.
+Indoor air quality often goes unnoticed despite its significant health impact.  
+Vayu-X was built to **autonomously explore an environment, identify polluted zones, and respond physically** by purifying the air — without relying on cloud services or human intervention.
 
-Instead, it uses:
-- threshold-based AQI logic
-- state-driven autonomous behavior
-- timing guards and non-blocking execution
-
-This approach was chosen to ensure:
-- predictable behavior
-- explainable decisions
-- reliability on constrained embedded hardware
+The project emphasizes **embedded reliability, explainable behavior, and system safety** over complex prediction models.
 
 ---
 
-## Current Status
+## 🧩 System Architecture
 
-- Fully functional autonomous prototype  
-- Demonstrated in an offline evaluation environment  
-- All core subsystems operational and integrated  
+flowchart LR
+    PMS[PMS3003<br/>PM2.5 / PM10] --> ESP[ESP32]
+    MQ[MQ-135<br/>Gas Sensor] --> ESP
+    DHT[DHT22<br/>Temp / Humidity] --> ESP
+    US[HC-SR04<br/>Ultrasonic] --> ESP
 
----
+    ESP --> AQI[AQI Computation<br/>US EPA]
+    AQI --> DEC[Decision Logic]
 
-## Limitations
+    DEC --> MOT[Motors]
+    DEC --> FAN[HEPA Fan]
 
-- Indoor-only operation  
-- Fixed AQI thresholds  
-- No long-term data storage or cloud integration  
-
----
-
-## Future Improvements
-
-- Adaptive AQI thresholds  
-- Improved localization and navigation  
-- Enhanced data logging for long-term analysis  
-- Refined mechanical enclosure  
-
----
-
-## Development Context
-
-This project was developed by **Team Vayu-X Innovators** as part of a national-level technical competition and evaluated through live, offline demonstrations.
+### Core Components
+- **ESP32 (38-pin)** — central controller
+- **PMS3003** — PM2.5 / PM10 particulate sensor
+- **MQ-135** — gas concentration trend detection
+- **DHT22** — temperature & humidity
+- **HC-SR04** — obstacle detection
+- **TB6612FNG** — motor driver
+- **HEPA filter + fan** — purification unit
+- **OLED (0.96")** — live system feedback
 
 ---
 
-## License
+## 🔁 Autonomous Decision Logic
 
-This project is intended for academic and educational use.
+Vayu-X uses **deterministic, threshold-based control** implemented entirely on the ESP32.
+
+### AQI-Based Behavior
+
+| AQI Range | Category | Robot Behavior |
+|----------|----------|----------------|
+| 0–50 | Good | Normal movement |
+| 51–100 | Moderate | Continue movement, increased monitoring |
+| ≥101 | Unhealthy or worse | Stop movement & purify air |
+
+When AQI exceeds the threshold:
+- Robot **halts immediately**
+- Motors are disabled
+- HEPA fan is activated
+- AQI is re-evaluated periodically
+- Movement resumes only after sustained improvement
+
+📄 Full logic explanation:  
+➡️ `docs/decision_logic.md`
+
+---
+
+## 📡 Monitoring Interface (Optional)
+
+Vayu-X exposes a **read-only HTTP JSON endpoint** for monitoring.
+
+- ESP32 runs in **Wi-Fi Access Point (AP) mode**
+- Phone connects directly to the robot (no internet)
+- Android app fetches live data via HTTP
+
+### Endpoint
+GET/data
+
+
+### Data Provided
+- AQI (numerical)
+- Air quality category
+- PM2.5 and PM10 values
+- Gas level indicator (MQ-135)
+- Temperature
+- Humidity
+
+📱 Android app documentation:  
+➡️ `app/android/README.md`
+
+> ⚠️ The app cannot control motors or fans — autonomy is enforced by design.
+
+---
+
+## 🖼️ Demo & Prototype Media
+
+### Robot Prototype
+![Robot Full View](demo/images/robot_full_view.jpg)
+
+### Electronics & Wiring
+![Electronics View](demo/images/electronics_view.jpg)
+
+### HEPA Filtration Unit
+![HEPA Filter](demo/images/hepa_filter_unit.jpg)
+
+### Ultrasonic Obstacle Sensor
+![Ultrasonic Sensor](demo/images/ultrasonic_front.jpg)
+
+### OLED Display
+![OLED Display](demo/images/oled_display.jpg)
+
+> Note: Minor structural changes were made during iteration (sensor relocation near HEPA intake). Core logic and functionality remain unchanged.
+
+---
+
+## 🗂️ Repository Structure
+
+Vayu-X/
+├─ firmware/ ESP32 firmware (Arduino)
+├─ app/android/ Android monitoring app (Kotlin)
+├─ docs/ System architecture & decision logic
+├─ hardware/ Schematics & hardware references
+├─ demo/ Prototype images & demo media
+└─ README.md Project overview
+
+
+---
+
+## ⚙️ How to Run (Quick Demo)
+
+1. Flash ESP32 firmware from `firmware/`
+2. Power the robot
+3. Connect phone to Wi-Fi network: `Vayu-X`
+4. Open Android app
+5. Observe live AQI data and autonomous behavior
+
+---
+
+## 🚧 Current Status & Limitations
+
+- Prototype chassis (cardboard) — functional, not final
+- Single-zone purification logic
+- No battery telemetry exposed
+- No cloud logging or remote access
+
+These limitations were **intentional** to maintain system simplicity and reliability.
+
+---
+
+## ❌ Why No Machine Learning?
+
+ML was deliberately excluded because:
+- Decisions are threshold-based and explainable
+- Training data is environment-specific
+- Embedded constraints favor deterministic logic
+- Reliability > prediction for this use-case
+
+Vayu-X is designed as a **robust embedded system**, not a black-box model.
+
+---
+
+## 👤 About the Author
+
+**Himanshu Jha**  
+B.Tech Computer Science  
+Embedded systems and robotics enthusiast
+
+GitHub: https://github.com/HimanshuJha-2005  
+LinkedIn: https://www.linkedin.com/in/himanshu-jha-728834337
+
+---
+
+## 🏁 Final Note
+
+Vayu-X demonstrates how **clear decision logic, embedded constraints, and physical actuation** can be combined to solve real-world problems — without unnecessary complexity.
+
+Built to be **understood, demonstrated, and trusted**.
+
+    ESP --> OLED[OLED Display]
+    ESP --> WIFI[Wi-Fi AP<br/>JSON /data]
