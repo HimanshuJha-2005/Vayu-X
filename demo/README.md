@@ -26,7 +26,7 @@ This layout reflects a functional prototype focused on reliability and rapid ite
 
 ## Air Filtration Unit
 
-![HEPA Filter Unit](hepa_filter_unit.jpg)
+![HEPA Filter Unit](HEPA_filter_unit.jpg)
 
 Fan-driven HEPA filtration unit used for active air purification when AQI exceeds defined thresholds.
 
