@@ -181,15 +181,32 @@ Vayu-X is designed as a **robust embedded system**, not a black-box model.
 
 ---
 
-## 👤 About the Author
+## 👤 About the Authors
 
 **Himanshu Jha**  
-B.Tech Computer Science  
+B.Tech Computer Science & Engineering
 Embedded systems and robotics enthusiast
 
 GitHub: https://github.com/HimanshuJha-2005  
-LinkedIn: https://www.linkedin.com/in/himanshu-jha-728834337
+LinkedIn: https://www.linkedin.com/in/himanshu-jha-728834337/
 
+---
+
+**Meet Toprani**  
+B.Tech Electronics Engineering  
+Instrumentation & Control Engineering 
+
+GitHub: https://github.com/meettoprani 
+LinkedIn: https://www.linkedin.com/in/meet-toprani/
+
+---
+
+**Vansh Mhatre**  
+B.Tech Computer Science 
+IoT & Sensor Integration
+
+GitHub: https://github.com/nice-guy-true-19/
+LinkedIn: https://www.linkedin.com/in/vansh-ravindra-mhatre/
 ---
 
 ## 🏁 Final Note
