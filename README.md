@@ -202,11 +202,12 @@ LinkedIn: https://www.linkedin.com/in/meet-toprani/
 ---
 
 **Vansh Mhatre**  
-B.Tech Computer Science 
-IoT & Sensor Integration
+B.Tech Computer Science  
+IoT & Sensor Integration  
 
-GitHub: https://github.com/nice-guy-true-19/
-LinkedIn: https://www.linkedin.com/in/vansh-ravindra-mhatre/
+GitHub: https://github.com/nice-guy-true-19/  
+LinkedIn: https://www.linkedin.com/in/vansh-ravindra-mhatre/  
+
 ---
 
 ## 🏁 Final Note
